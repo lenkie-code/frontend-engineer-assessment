@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   components: [{ path: '~/components', pathPrefix: false }],
   typescript: { strict: true },
+  vite: {
+    // Pre-bundle optional libraries so first use doesn't trigger a full page reload mid-interview.
+    optimizeDeps: {
+      include: ['@tanstack/vue-query', '@vuelidate/core', '@vuelidate/validators', '@vueuse/core', 'dayjs'],
+    },
+  },
   app: {
     head: {
       title: 'Lenkie Broker Portal',
